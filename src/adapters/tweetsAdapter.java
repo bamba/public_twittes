@@ -81,7 +81,7 @@ public class tweetsAdapter extends ArrayAdapter<tweet>{
         iv.setImageDrawable(d);
         }
         catch(Exception e){
-        	String m = e.getMessage();
+        	
         }
         //Assign the appropriate data from our alert object above
         name.setText(al.user.name);
