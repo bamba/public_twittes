@@ -74,7 +74,20 @@ public class tweetsAdapter extends ArrayAdapter<tweet>{
         ImageView iv = (ImageView)tweetview.findViewById(R.id.imgIcon);
         
 
+<<<<<<< HEAD
         iv.setImageDrawable(al.user.getProfile_image_url());
+=======
+        try {
+        URL url = new URL(al.user.profile_image_url);
+        InputStream content = (InputStream)url.getContent();
+        Drawable d = Drawable.createFromStream(content , "src"); 
+        iv.setImageDrawable(d);
+        }
+        catch(Exception e){
+        	
+        }
+        //Assign the appropriate data from our alert object above
+>>>>>>> e1705d381e528aa5b2fc92a5ddab08ceec6e97e1
         name.setText(al.user.name);
         tweet.setText(al.text);
         time.setText(al.created_at);
