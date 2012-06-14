@@ -1,16 +1,18 @@
 package tweet;
 
+import android.graphics.drawable.Drawable;
+
 public class user {
 	public String name;
 	public String created_at;
-	public String profile_image_url;
+	public Drawable profile_image_url;
 	public String location;
 	public String time_zone;
 	public String screen_name;
 	public user() {
 		name = "";
 		created_at = "";
-		profile_image_url = "";
+		profile_image_url = null;
 		location = "";
 		time_zone = "";
 		screen_name = "";
@@ -21,7 +23,7 @@ public class user {
 	public void setCreated_at(String value){
 		created_at=value;
 	}
-	public void setProfile_image_url(String value){
+	public void setProfile_image_url(Drawable value){
 		profile_image_url=value;
 	}
 	public void setLocation(String value){
@@ -40,7 +42,7 @@ public class user {
 	public String getCreated_at(){
 		return created_at;
 	}
-	public String getProfile_image_url(){
+	public Drawable getProfile_image_url(){
 		return profile_image_url;
 	}
 	public String getLocation(){

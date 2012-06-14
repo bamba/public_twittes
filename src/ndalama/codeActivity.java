@@ -16,6 +16,7 @@ import org.json.JSONObject;
 import tweet.tweet;
 import adapters.tweetsAdapter;
 import android.app.Activity;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.widget.ListView;
@@ -77,7 +78,21 @@ public class codeActivity extends Activity {
     			   var.user.created_at = tmpuser.getString("created_at");
     			   var.user.location = tmpuser.getString("location");
     			   var.user.name = tmpuser.getString("name");
-    			   var.user.profile_image_url= tmpuser.getString("profile_image_url");
+    			   
+    			   
+    			     
+
+    			        try {
+    			        URL picurl = new URL(tmpuser.getString("profile_image_url"));
+    			        InputStream content = (InputStream)picurl.getContent();
+    			        Drawable d = Drawable.createFromStream(content , "src"); 
+    			        var.user.profile_image_url= d;
+    			        }
+    			        catch(Exception e){
+    			        	
+    			        }
+    			   
+    			   
     			   var.user.screen_name= tmpuser.getString("screen_name");
     			   var.user.time_zone= tmpuser.getString("time_zone");
     			   

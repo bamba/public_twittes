@@ -2,6 +2,7 @@ package adapters;
 
 import java.io.InputStream;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
 import ndalama.code.R;
@@ -70,20 +71,10 @@ public class tweetsAdapter extends ArrayAdapter<tweet>{
         TextView name =(TextView)tweetview.findViewById(ndalama.code.R.id.name);
         TextView tweet =(TextView)tweetview.findViewById(ndalama.code.R.id.tweet);
         TextView time =(TextView)tweetview.findViewById(ndalama.code.R.id.time);
-        
-        
         ImageView iv = (ImageView)tweetview.findViewById(R.id.imgIcon);
+        
 
-        try {
-        URL url = new URL(al.user.profile_image_url);
-        InputStream content = (InputStream)url.getContent();
-        Drawable d = Drawable.createFromStream(content , "src"); 
-        iv.setImageDrawable(d);
-        }
-        catch(Exception e){
-        	String m = e.getMessage();
-        }
-        //Assign the appropriate data from our alert object above
+        iv.setImageDrawable(al.user.getProfile_image_url());
         name.setText(al.user.name);
         tweet.setText(al.text);
         time.setText(al.created_at);
