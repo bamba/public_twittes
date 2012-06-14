@@ -1,16 +1,10 @@
 package adapters;
 
-import java.io.InputStream;
-import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 
 import ndalama.code.R;
-
-
 import tweet.tweet;
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,7 +45,6 @@ public class tweetsAdapter extends ArrayAdapter<tweet>{
     public View getView(int position, View convertView, ViewGroup parent)
     {
         LinearLayout tweetview;
-        //Get the current alert object
         tweet al = getItem(position);
  
         //Inflate the view
@@ -67,27 +60,14 @@ public class tweetsAdapter extends ArrayAdapter<tweet>{
         {
         	tweetview = (LinearLayout) convertView;
         }
-        //Get the text boxes from the listitem.xml file
+
         TextView name =(TextView)tweetview.findViewById(ndalama.code.R.id.name);
         TextView tweet =(TextView)tweetview.findViewById(ndalama.code.R.id.tweet);
         TextView time =(TextView)tweetview.findViewById(ndalama.code.R.id.time);
         ImageView iv = (ImageView)tweetview.findViewById(R.id.imgIcon);
         
 
-<<<<<<< HEAD
         iv.setImageDrawable(al.user.getProfile_image_url());
-=======
-        try {
-        URL url = new URL(al.user.profile_image_url);
-        InputStream content = (InputStream)url.getContent();
-        Drawable d = Drawable.createFromStream(content , "src"); 
-        iv.setImageDrawable(d);
-        }
-        catch(Exception e){
-        	
-        }
-        //Assign the appropriate data from our alert object above
->>>>>>> e1705d381e528aa5b2fc92a5ddab08ceec6e97e1
         name.setText(al.user.name);
         tweet.setText(al.text);
         time.setText(al.created_at);

@@ -16,6 +16,7 @@ import org.json.JSONObject;
 import tweet.tweet;
 import adapters.tweetsAdapter;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -32,7 +33,9 @@ public class codeActivity extends Activity {
         StrictMode.setThreadPolicy(policy);
         
         ArrayList<tweet> mytweets= new ArrayList<tweet>();
+        
         LoadTweets(mytweets);
+        
         
         ListView myList = (ListView)findViewById(R.id.listViewTweets);
         
@@ -46,7 +49,6 @@ public class codeActivity extends Activity {
 			URL url = new URL("https://api.twitter.com/1/statuses/public_timeline.json");
 			HttpURLConnection c = (HttpURLConnection) url.openConnection();
             c.setRequestMethod("GET");
-            //c.setDoOutput(true);
             c.connect();
             
             if(c.getResponseCode()==HttpURLConnection.HTTP_OK){
@@ -78,20 +80,17 @@ public class codeActivity extends Activity {
     			   var.user.created_at = tmpuser.getString("created_at");
     			   var.user.location = tmpuser.getString("location");
     			   var.user.name = tmpuser.getString("name");
-    			   
-    			   
-    			     
 
-    			        try {
-    			        URL picurl = new URL(tmpuser.getString("profile_image_url"));
-    			        InputStream content = (InputStream)picurl.getContent();
-    			        Drawable d = Drawable.createFromStream(content , "src"); 
-    			        var.user.profile_image_url= d;
-    			        }
-    			        catch(Exception e){
-    			        	
-    			        }
-    			   
+			       try {
+    			       URL picurl = new URL(tmpuser.getString("profile_image_url"));
+    			       InputStream content = (InputStream)picurl.getContent();
+    			       Drawable d = Drawable.createFromStream(content , "src"); 
+    			       var.user.profile_image_url= d;
+    			   }
+    			   catch(Exception e){
+    				   //Just dont load the Image Just dont do anything
+    				   //If you have a default Image then you can load it
+    			   }
     			   
     			   var.user.screen_name= tmpuser.getString("screen_name");
     			   var.user.time_zone= tmpuser.getString("time_zone");

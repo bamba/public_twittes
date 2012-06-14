@@ -52,7 +52,4 @@ public class tweet {
     	user.screen_name = value.screen_name;
     	user.time_zone = value.time_zone;
     }
-    
-    
-
 }
